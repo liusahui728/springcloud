@@ -1,0 +1,26 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: app-zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://app1:7001/eureka,http://app2:7002/eureka,http://app3:7003/eureka
+  instance:
+    instance-id: app-zuul:9527
+    prefer-ip-address: true
+    hostname: zuulserver
+zuul:
+  prefix: /provider
+  ignored-services: "*"
+  routes:
+    mydept.serviceId: app-provider-user
+    mydept.path: /provider/**
+info:
+  app.name: ${name}
+  company.name: 649312854@qq.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+

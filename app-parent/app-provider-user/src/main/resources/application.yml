@@ -1,0 +1,135 @@
+server:
+  port: 8001
+  context-path: /provider
+name:
+  app-provider-user
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml       # mybatis配置文件所在路径
+  type-aliases-package: org.com.app.model    # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/*.xml                       # mapper映射文件
+  global-config:
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", input:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+feign:
+  hystrix:
+    enabled: true
+spring:
+  profiles:
+    provider${server.port}
+  application:
+    name: ${name}
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://192.168.174.128:3306/test1?useSSL=false&useUnicode=true&characterEncoding=utf-8&useAffectedRows=true             # 数据库名称
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://app1:7001/eureka/,http://app2:7002/eureka/,http://app3:7003/eureka/
+  instance:
+    instance-id: ${name}:${server.port}
+    prefer-ip-address: true     #访问路径可以显示IP地址
+info:
+  app.name: ${name}
+  company.name: 649312854@qq.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+---
+server:
+  port: 8002
+name:
+  app-provider-user
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml       # mybatis配置文件所在路径
+  type-aliases-package: org.com.app.model    # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/*.xml                       # mapper映射文件
+  global-config:
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", input:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+spring:
+  profiles:
+    provider${server.port}
+  application:
+    name: ${name}
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://192.168.174.128:3306/test1?useSSL=false&useUnicode=true&characterEncoding=utf-8&useAffectedRows=true             # 数据库名称
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://app1:7001/eureka/,http://app2:7002/eureka/,http://app3:7003/eureka/
+  instance:
+    instance-id: ${name}:${server.port}
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+info:
+  app.name: ${name}
+  company.name: 649312854@qq.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+---
+server:
+  port: 8003
+name:
+  app-provider-user
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml       # mybatis配置文件所在路径
+  type-aliases-package: org.com.app.model    # 所有Entity别名类所在包
+  mapper-locations: classpath:mybatis/mapper/*.xml                       # mapper映射文件
+  global-config:
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", input:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: AUTO
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+spring:
+  profiles:
+    provider${server.port}
+  application:
+    name: ${name}
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
+    url: jdbc:mysql://192.168.174.128:3306/test1?useSSL=false&useUnicode=true&characterEncoding=utf-8&useAffectedRows=true             # 数据库名称
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+eureka:
+  client: #客户端注册进eureka服务列表内
+    service-url:
+      defaultZone: http://app1:7001/eureka/,http://app2:7002/eureka/,http://app3:7003/eureka/
+  instance:
+    instance-id: ${name}:${server.port}
+    prefer-ip-address: true     #访问路径可以显示IP地址
+
+info:
+  app.name: ${name}
+  company.name: 649312854@qq.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
